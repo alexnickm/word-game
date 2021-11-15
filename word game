@@ -1,0 +1,106 @@
+#include<iostream>
+using namespace std;
+
+//function declarations
+void shop();
+void Monster();
+
+//global variables
+string inventory[10] = { "sword" };
+int health = 100;
+
+
+int main() {
+	int room = 1;
+	string input;
+	cout << "You wake up to find yourself in a SPOOPY dungeon. Can you escape? Good luck!" << endl;
+
+
+
+
+	do {
+		switch (room) {
+		case 1:
+			cout << "You are in a room 1. You can go North." << endl;
+			cout << "press p for shop" << endl;
+			cin >> input;
+			if (input == "n")
+				room = 2;
+			else if (input == "p")
+				shop();
+			break;
+		case 2:
+			cout << "You are in room 2. You can go south." << endl;
+			cin >> input;
+			if (input == "s")
+				room = 1;
+			else
+				cout << "sorry not a option." << endl;
+			break;
+		case 3:
+			cout << "You are in room 3. You can go west." << endl;
+			cin >> input;
+			if (input == "w")
+				room = 2;
+			else
+				cout << "sorry not a option." << endl;
+			break;
+		case 4:
+			cout << "You are in room 4. You can go west." << endl;
+			cin >> input;
+			if (input == "w")
+				room = 3;
+			else
+				cout << "sorry not a option." << endl;
+			break;
+
+
+		}
+
+	} while (input != "q");
+}
+	
+
+//function definition
+	void shop() {
+	string input;
+	do {
+		cout << "Hi! welcome to my shop!" << endl;
+		cout << "press 'p' for potion, 'k' for key, 's' for sword." << endl;
+		cout << "press 'q' to quit" << endl;
+		cin >> input;
+		if (input == "p") {
+			inventory[0] = "potion ";
+		}
+		else if (input == "k") {
+			inventory[1] = "key";
+		}
+		//add else if to put lamp into inventory
+		else if (input == "s") {
+			inventory[2] = "sword";
+		}
+
+	} while (input != "q");
+} 
+
+	void monster() {
+		int num = rand() % 100 + 1;
+		if (num < 20) {
+			cout << "a skeleton appears!" << endl;
+			health -= 15;
+			cout << "a skeleton attacks you" << endl;
+		}
+	
+        else if (num < 50) {
+			cout << "a zombie appears!" << endl;
+			num = rand() % 50 + 1;
+			cout << "a zombie bites you for num damage" << endl;
+			health -= num;
+
+		}
+
+		else if (num < 75)
+			cout << "a spider appears" << endl;
+		else
+			cout << "no monsters" << endl; 
+}
