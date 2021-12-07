@@ -21,8 +21,8 @@ int main() {
 
 
 	do {
-		
-		switch (room) {
+		//set up a visible inventory here as well as a health/money counter
+		switch (room) {//Add extra else ifs and rooms to give your player an option to move freely all around your map
 		case 1:
 			cout << "You are in a room 1. You can go south." << endl;
 			cout << "press p for shop" << endl;
@@ -67,6 +67,7 @@ int main() {
 			break;
 		case 5:
 			cout << "You are in room 5. You can go south." << endl;
+			//call monster gen in rooms here has to be before cin
 			cin >> input;
 			if (input == "south")
 				room = 4;
@@ -84,10 +85,14 @@ int main() {
 				cout << "sorry not a option." << endl;
 			break;
 		case 7:
-			cout << "You are in room 7. You can go east." << endl;
+			cout << "You are in room 7. You can go east west and north." << endl;
 			cin >> input;
 			if (input == "east")
 				room = 8;
+			else if (input == "west")
+				room = 9;
+			else if (input == "north")
+				room = 6;
 			else
 				cout << "sorry not a option." << endl;
 			break;
@@ -104,11 +109,31 @@ int main() {
 			cin >> input;
 			if (input == "west")
 				room = 10;
+			else if (input == "east")
+				room = 7;
+			//MO: add east option
 			else
 				cout << "sorry not a option." << endl;
 			break;
+		case 10:
+			cout << "you are in room 10. you can go north or east." << endl;
+			cin >> input;
+			if (input == "north")
+				room = 11;
+			else if (input == "east")
+				room = 9;
 
+			else
+				cout << "sorry not a option." << endl;
+			break;
+		case 11:
+			cout << "You won!!" << endl;
+			
+			break;
+			
 
+			//MO: add rooms 10 and 11 here
+			return 0;
 		}
 
 	} while (input != "q");
@@ -123,7 +148,7 @@ int main() {
 		cout << "press p for potion($20), Enter 'k' for key, press 's' for sword." << endl;
 		cout << "press 'q' to quit" << endl;
 		cin >> input;
-		if (input == "p") {
+		if (input == "p") {//add a money variable so that it checks if you have a sufficient amount of money
 			inventory[0] = "potion ";
 		}
 		else if (input == "k") {
